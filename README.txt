@@ -1,58 +1,48 @@
 # Green AI-Driven Pareto Optimal Framework
 
-A reproducible computational framework for battery health estimation,
-metaheuristic optimization, Green AI evaluation, computational-cost
-analysis, stability analysis, and Pareto-optimal solution identification.
+A reproducible computational framework for battery State of Health (SOH) estimation, metaheuristic optimization, Green AI evaluation, computational-cost analysis, stability assessment, and Pareto-optimal solution identification.
 
 ---
 
 ## 1. Overview
 
-This repository contains the Python source codes and experimental
-results associated with the research study:
+This repository contains the Python source codes, experimental results, and supporting computational data associated with the research study:
 
-**Green AI-Driven Pareto Optimal Framework for Battery Health
-Estimation and Optimization**
+**Green AI-Driven Pareto Optimal Framework for Battery Health Estimation and Optimization**
 
-The purpose of this repository is to provide computational
-transparency and reproducibility for the optimization experiments,
-Green AI evaluation, stability analysis, and Pareto-optimality
-assessment reported in the associated research.
+The primary purpose of this repository is to provide computational transparency and reproducibility for the optimization experiments, computational-efficiency assessment, Green AI evaluation, stability analysis, and Pareto-optimality analysis presented in the associated research.
 
-The repository contains:
+The repository provides:
 
-- Python source codes used in the experiments
+- Python source codes used in the computational workflow
 - Experimental results from 20 independent optimization runs
-- JSON-based result files
-- RAM usage measurements
-- Stability analysis results
+- Aggregated JSON result files
+- Individual optimization-run results
+- RAM/memory usage measurements
+- Stability-analysis results
 - Visualization outputs
 - Python package requirements
-- Reproducibility instructions
+- Detailed instructions for reproducing the analyses
 
-The source codes provided in this repository correspond to the
-computational versions used during the study.
+The source codes are provided in the form used during the research workflow in order to maintain consistency with the reported computational results.
 
 ---
 
 # 2. Research Framework
 
-The framework evaluates different optimization strategies according
-to both predictive performance and computational efficiency.
+The framework evaluates optimization strategies according to both predictive performance and computational efficiency.
 
-The analysis considers multiple dimensions of computational
-performance, including:
+Instead of considering prediction accuracy alone, the framework evaluates multiple dimensions of computational performance, including:
 
 - prediction error,
 - model performance,
 - computational time,
 - memory consumption,
 - optimization stability,
+- computational efficiency,
 - and Pareto optimality.
 
-The framework therefore aims to identify optimization strategies that
-provide a suitable balance between predictive performance and
-computational cost.
+The overall objective is to identify optimization strategies that provide an appropriate balance between predictive performance and computational cost.
 
 ---
 
@@ -66,38 +56,49 @@ The framework includes the following optimization approaches:
 - Particle Swarm Optimization (PSO)
 - Bayesian Optimization
 
-These algorithms are evaluated using multiple independent runs to
-assess both performance and stability.
+The optimization algorithms are evaluated using multiple independent runs in order to assess both their performance and stability.
 
 ---
 
 # 4. Evaluation Metrics
 
-The computational experiments consider the following metrics:
+The computational experiments consider multiple performance and computational-efficiency indicators.
 
-### Prediction Performance
+## 4.1 Prediction Performance
 
-- RMSE
-- MAE
-- R²
+The predictive performance assessment includes:
 
-### Computational Efficiency
+- Root Mean Square Error (RMSE)
+- Mean Absolute Error (MAE)
+- Coefficient of Determination (R²)
 
-- Training time
-- RAM / memory usage
+## 4.2 Computational Efficiency
+
+The computational assessment includes:
+
+- Training/optimization time
+- RAM/memory usage
+- Storage requirements
 - Computational cost
 
-### Optimization Robustness
+## 4.3 Optimization Robustness
 
-- Results across independent runs
+The robustness of the optimization algorithms is evaluated using:
+
+- Independent optimization runs
+- Run-to-run variability
+- Statistical distributions
 - Stability analysis
-- Distribution of optimization results
 
-### Multi-objective Analysis
+## 4.4 Multi-Objective Analysis
 
-- Pareto dominance
-- Pareto-optimal solutions
-- Trade-offs between prediction performance and computational cost
+The framework uses Pareto analysis to identify nondominated solutions considering multiple objectives simultaneously.
+
+The Pareto analysis can consider objectives such as:
+
+- RMSE
+- Computational time
+- Memory usage
 
 ---
 
