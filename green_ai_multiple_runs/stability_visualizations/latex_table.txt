@@ -1,0 +1,16 @@
+\begin{table}[htbp]
+\centering
+\caption{Optimizasyon Algoritmalarının Karşılaştırmalı Performansı}
+\label{tab:optimizer_comparison}
+\begin{tabular}{lcccc}
+\hline
+Algoritma & Ortalama RMSE & Std. Sapma & Min RMSE & Max RMSE \\
+\hline
+PSO & 0.03050 & 0.00802 & 0.01853 & 0.03825 \\
+WOA & 0.03051 & 0.00813 & 0.01853 & 0.03890 \\
+GA & 0.03046 & 0.00828 & 0.01856 & 0.03949 \\
+GWO & 0.03052 & 0.00810 & 0.01853 & 0.03860 \\
+Bayesian & 0.03180 & 0.00701 & 0.02197 & 0.03786 \\
+\hline
+\end{tabular}
+\end{table}
