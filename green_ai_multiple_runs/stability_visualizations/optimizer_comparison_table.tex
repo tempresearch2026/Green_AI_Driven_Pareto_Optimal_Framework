@@ -1,0 +1,17 @@
+\begin{table}[htbp]
+\centering
+\caption{Comparison of optimization algorithms across 20 independent runs.}
+\label{tab:optimizer_comparison}
+\begin{tabular}{lrrrrrr}
+\hline
+Optimizer & Mean RMSE & SD & Mean MAE & Mean $R^2$ & HPO Time (s) & Model Size (MB) \\
+\hline
+Bayesian & 0.02384 & 0.01364 & 0.02137 & -2.81787 & 103.18618 & 1.06485 \\
+GA & 0.04080 & 0.02932 & 0.03884 & -15.63558 & 12.36413 & 0.60061 \\
+GWO & 0.02605 & 0.01596 & 0.02370 & -4.25385 & 12.30191 & 0.86748 \\
+PSO & 0.02619 & 0.01892 & 0.02374 & -5.58056 & 13.99676 & 1.29894 \\
+RandomSearch & 0.04149 & 0.02496 & 0.03959 & -15.13289 & 10.78752 & 0.78842 \\
+WOA & 0.02516 & 0.01479 & 0.02279 & -3.35538 & 9.75993 & 0.63529 \\
+\hline
+\end{tabular}
+\end{table}
