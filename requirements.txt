@@ -1,0 +1,12 @@
+# Python 3.11 (experiments were run with Python 3.11.9 on Windows 11)
+# Exact versions used in the reported experiments (see results/run_info/environment.json)
+numpy==2.4.0
+pandas==2.3.3
+scipy==1.16.3
+scikit-learn==1.8.0
+xgboost==3.1.2
+lightgbm==4.6.0
+joblib==1.5.3
+matplotlib==3.10.8
+# Optional: only used to record total RAM in environment.json
+psutil

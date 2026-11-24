@@ -1,0 +1,79 @@
+[23:18:01] ==============================================================================
+[23:18:01] Green AI HPO benchmark v2
+[23:18:01] output: C:\Users\LENOVO\Desktop\Transfer Learning Project\Veriler\cleaned_dataset\organized_dataset\25 degree\green_ai_v2_runs
+[23:18:01] STEP 1/4  preflight: loading and validating datasets
+[23:18:21]   [OK] B0005     (NASA): cycles used=168, SOH 0.931 -> 0.664, dropped short/glitch/nan=0/0/0, SOH unit: none (already fraction)
+[23:18:21]   [OK] B0006     (NASA): cycles used=168, SOH 0.977 -> 0.574, dropped short/glitch/nan=0/0/0, SOH unit: none (already fraction)
+[23:18:21]   [OK] B0018     (NASA): cycles used=132, SOH 0.928 -> 0.671, dropped short/glitch/nan=0/0/0, SOH unit: none (already fraction)
+[23:18:23]   [OK] LFP_CH17  (LFP): cycles used=1835, SOH 0.990 -> 0.837, dropped short/glitch/nan=0/0/0, SOH unit: none (already fraction)
+[23:18:23]   unit CHRONO B0005        train=  143 test=   25 HPO folds (train,val)=[[92, 26], [118, 25]]
+[23:18:23]   unit CHRONO B0006        train=  143 test=   25 HPO folds (train,val)=[[92, 26], [118, 25]]
+[23:18:23]   unit CHRONO B0018        train=  112 test=   20 HPO folds (train,val)=[[73, 19], [92, 20]]
+[23:18:23]   unit CHRONO LFP_CH17     train= 1560 test=  275 HPO folds (train,val)=[[1009, 275], [1284, 276]]
+[23:18:23]   unit LOBO   test_B0005   train=  300 test=  168 HPO folds (train,val)=[[132, 168], [168, 132]]
+[23:18:23]   unit LOBO   test_B0006   train=  300 test=  168 HPO folds (train,val)=[[132, 168], [168, 132]]
+[23:18:23]   unit LOBO   test_B0018   train=  336 test=  132 HPO folds (train,val)=[[168, 168], [168, 168]]
+[23:18:23] STEP 2/4  smoke test (seeds=[11, 23], n_evals=14) - a few minutes
+[23:27:41] [smoke] seed 11 (1/2) finished in 9.3 min | errors=0 deadline-skipped=0 | est. remaining 0.15 h
+[23:39:30] [smoke] seed 23 (2/2) finished in 11.8 min | errors=0 deadline-skipped=0 | est. remaining 0.00 h
+[23:39:38] [analysis] complete seeds: 2 -> [11, 23]
+[23:40:11] [analysis] sanity checks: 516 PASS, 0 FAIL (see analysis/sanity_checks.csv)
+[23:40:11] smoke test OK in 21.8 min
+[23:40:11] estimated: ~55 min per seed, ~18.2 h for 20 seeds with 6 workers. Within the 10.0 h limit about 11 seeds will complete (>= 5 needed).
+[23:40:11] STEP 3/4  full run: 7 units x 3 models x 7 strategies x 20 seeds, n_evals=100, workers=6, limit=10.0 h
+[00:05:34] [full] seed 11 (1/20) finished in 25.4 min | errors=0 deadline-skipped=0 | est. remaining 8.04 h
+[00:24:12] [full] seed 23 (2/20) finished in 18.6 min | errors=0 deadline-skipped=0 | est. remaining 6.60 h
+[00:43:50] [full] seed 37 (3/20) finished in 19.6 min | errors=0 deadline-skipped=0 | est. remaining 6.01 h
+[01:03:58] [full] seed 41 (4/20) finished in 20.1 min | errors=0 deadline-skipped=0 | est. remaining 5.58 h
+[01:22:06] [full] seed 53 (5/20) finished in 18.1 min | errors=0 deadline-skipped=0 | est. remaining 5.10 h
+[01:38:28] [full] seed 67 (6/20) finished in 16.4 min | errors=0 deadline-skipped=0 | est. remaining 4.60 h
+[06:35:24] [full] seed 79 (7/20) finished in 296.9 min | errors=0 deadline-skipped=0 | est. remaining 12.85 h
+[07:28:24] [full] seed 83 (8/20) finished in 53.0 min | errors=0 deadline-skipped=0 | est. remaining 11.71 h
+[08:18:09] [full] seed 97 (9/20) finished in 49.8 min | errors=0 deadline-skipped=0 | est. remaining 10.55 h
+[09:27:57] ==============================================================================
+[09:27:57] Green AI HPO benchmark v2
+[09:27:57] output: C:\Users\LENOVO\Desktop\Transfer Learning Project\Veriler\cleaned_dataset\organized_dataset\25 degree\green_ai_v2_runs
+[09:27:57] STEP 1/4  preflight: loading and validating datasets
+[09:28:10]   [OK] B0005     (NASA): cycles used=168, SOH 0.931 -> 0.664, dropped short/glitch/nan=0/0/0, SOH unit: none (already fraction)
+[09:28:10]   [OK] B0006     (NASA): cycles used=168, SOH 0.977 -> 0.574, dropped short/glitch/nan=0/0/0, SOH unit: none (already fraction)
+[09:28:10]   [OK] B0018     (NASA): cycles used=132, SOH 0.928 -> 0.671, dropped short/glitch/nan=0/0/0, SOH unit: none (already fraction)
+[09:28:11]   [OK] LFP_CH17  (LFP): cycles used=1835, SOH 0.990 -> 0.837, dropped short/glitch/nan=0/0/0, SOH unit: none (already fraction)
+[09:28:11]   unit CHRONO B0005        train=  143 test=   25 HPO folds (train,val)=[[92, 26], [118, 25]]
+[09:28:11]   unit CHRONO B0006        train=  143 test=   25 HPO folds (train,val)=[[92, 26], [118, 25]]
+[09:28:11]   unit CHRONO B0018        train=  112 test=   20 HPO folds (train,val)=[[73, 19], [92, 20]]
+[09:28:11]   unit CHRONO LFP_CH17     train= 1560 test=  275 HPO folds (train,val)=[[1009, 275], [1284, 276]]
+[09:28:11]   unit LOBO   test_B0005   train=  300 test=  168 HPO folds (train,val)=[[132, 168], [168, 132]]
+[09:28:11]   unit LOBO   test_B0006   train=  300 test=  168 HPO folds (train,val)=[[132, 168], [168, 132]]
+[09:28:11]   unit LOBO   test_B0018   train=  336 test=  132 HPO folds (train,val)=[[168, 168], [168, 168]]
+[09:28:11] STEP 2/4  smoke test (seeds=[11, 23], n_evals=14) - a few minutes
+[09:28:11] [smoke] seed 11: already complete (147 tasks).
+[09:28:11] [smoke] seed 23: already complete (147 tasks).
+[09:28:11] [analysis] complete seeds: 2 -> [11, 23]
+[09:28:38] [analysis] sanity checks: 516 PASS, 0 FAIL (see analysis/sanity_checks.csv)
+[09:28:38] smoke test OK in 0.4 min
+[09:28:38] estimated: ~55 min per seed, ~18.2 h for 20 seeds with 6 workers. Within the 10.0 h limit about 11 seeds will complete (>= 5 needed).
+[09:28:38] STEP 3/4  full run: 7 units x 3 models x 7 strategies x 20 seeds, n_evals=100, workers=6, limit=10.0 h
+[09:28:38] [full] seed 11: already complete (147 tasks).
+[09:28:38] [full] seed 23: already complete (147 tasks).
+[09:28:38] [full] seed 37: already complete (147 tasks).
+[09:28:38] [full] seed 41: already complete (147 tasks).
+[09:28:38] [full] seed 53: already complete (147 tasks).
+[09:28:38] [full] seed 67: already complete (147 tasks).
+[09:28:38] [full] seed 79: already complete (147 tasks).
+[09:28:38] [full] seed 83: already complete (147 tasks).
+[09:28:38] [full] seed 97: already complete (147 tasks).
+[09:51:26] [full] seed 101 (10/20) finished in 22.8 min | errors=0 deadline-skipped=0 | est. remaining 0.38 h
+[10:23:12] [full] seed 113 (11/20) finished in 31.8 min | errors=0 deadline-skipped=0 | est. remaining 0.74 h
+[10:49:15] [full] seed 127 (12/20) finished in 26.0 min | errors=0 deadline-skipped=0 | est. remaining 0.90 h
+[11:08:10] [full] seed 139 (13/20) finished in 18.9 min | errors=0 deadline-skipped=0 | est. remaining 0.89 h
+[11:37:01] [full] seed 149 (14/20) finished in 28.8 min | errors=0 deadline-skipped=0 | est. remaining 0.92 h
+[11:58:44] [full] seed 163 (15/20) finished in 21.7 min | errors=0 deadline-skipped=0 | est. remaining 0.83 h
+[12:43:14] [full] seed 173 (16/20) finished in 44.5 min | errors=0 deadline-skipped=0 | est. remaining 0.81 h
+[13:12:42] [full] seed 181 (17/20) finished in 29.5 min | errors=0 deadline-skipped=0 | est. remaining 0.66 h
+[13:32:07] [full] seed 193 (18/20) finished in 19.4 min | errors=0 deadline-skipped=0 | est. remaining 0.45 h
+[13:51:52] [full] seed 211 (19/20) finished in 19.8 min | errors=0 deadline-skipped=0 | est. remaining 0.23 h
+[14:17:50] [full] seed 223 (20/20) finished in 26.0 min | errors=0 deadline-skipped=0 | est. remaining 0.00 h
+[14:17:50] STEP 4/4  analysis
+[14:18:26] [analysis] complete seeds: 20 -> [11, 23, 37, 41, 53, 67, 79, 83, 97, 101, 113, 127, 139, 149, 163, 173, 181, 193, 211, 223]
+[14:18:39] [analysis] sanity checks: 516 PASS, 0 FAIL (see analysis/sanity_checks.csv)
+[14:18:39] DONE. Results: analysis/paper_tables.md, analysis/*.csv, analysis/figures/

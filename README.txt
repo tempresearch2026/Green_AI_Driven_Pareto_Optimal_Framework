@@ -1,137 +1,165 @@
-# Green AI-Driven Pareto Optimal Framework
+# Is hyperparameter optimization worth its cost?
 
-A reproducible computational framework for battery State of Health (SOH) estimation, metaheuristic optimization, Green AI evaluation, computational-cost analysis, stability assessment, and Pareto-optimal solution identification.
+A Green AI-oriented benchmark of tree ensembles for lithium-ion and LiFePO4 battery state-of-health (SOH) estimation.
 
----
-
-## 1. Overview
-
-This repository contains the Python source codes, experimental results, and supporting computational data associated with the research study:
-
-**Green AI-Driven Pareto Optimal Framework for Battery Health Estimation and Optimization**
-
-The primary purpose of this repository is to provide computational transparency and reproducibility for the optimization experiments, computational-efficiency assessment, Green AI evaluation, stability analysis, and Pareto-optimality analysis presented in the associated research.
-
-The repository provides:
-
-- Python source codes used in the computational workflow
-- Experimental results from 20 independent optimization runs
-- Aggregated JSON result files
-- Individual optimization-run results
-- RAM/memory usage measurements
-- Stability-analysis results
-- Visualization outputs
-- Python package requirements
-- Detailed instructions for reproducing the analyses
-
-The source codes are provided in the form used during the research workflow in order to maintain consistency with the reported computational results.
+This repository contains the experiment script, the input data description, and **all raw and aggregated outputs** behind the tables and figures of the manuscript. Every number reported in the paper can be traced to a file in `results/`.
 
 ---
 
-# 2. Research Framework
+## What the study does
 
-The framework evaluates optimization strategies according to both predictive performance and computational efficiency.
-
-Instead of considering prediction accuracy alone, the framework evaluates multiple dimensions of computational performance, including:
-
-- prediction error,
-- model performance,
-- computational time,
-- memory consumption,
-- optimization stability,
-- computational efficiency,
-- and Pareto optimality.
-
-The overall objective is to identify optimization strategies that provide an appropriate balance between predictive performance and computational cost.
+- **Models:** Random Forest, XGBoost, LightGBM
+- **Strategies (7):** library defaults (no HPO, zero search cost), Random Search (RS), Bayesian Optimization (GP-EI), PSO, GA, WOA, GWO
+- **Equal budget:** every HPO strategy uses exactly **100 objective evaluations** on the **same unit hypercube** `[0,1]^d` (identical encoding, decoding and log-scaling). Library defaults lie inside every search space.
+- **Two validation protocols**
+  - `CHRONO`: within-cell chronological split (first 85 % train, last 15 % test). The HPO objective is the mean RMSE of two forward-chaining folds inside the training part (0–55 % → 55–70 %, 0–70 % → 70–85 %).
+  - `LOBO`: leave-one-battery-out across the NASA cells (train on two cells, test on the entire life of the third). The HPO objective is the mean RMSE of the inner leave-one-cell-out folds.
+- **Cells:** NASA PCoE B0005, B0006, B0018 (Li-ion 18650) and one LiFePO4/graphite 18650 cell (CH17).
+- **Repetitions:** 20 seeds × 147 configurations = **2,940 runs** (all completed).
+- **Statistics:** Friedman test, Nemenyi critical difference, Wilcoxon signed-rank with Holm correction, rank-biserial effect sizes, bootstrap confidence intervals.
+- **Cost / Green AI:** HPO process CPU time, model size, Pareto fronts (RMSE, CPU time, size), and an equal-weight Green AI score.
 
 ---
 
-# 3. Optimization Algorithms
+## Repository structure
 
-The framework includes the following optimization approaches:
-
-- Genetic Algorithm (GA)
-- Whale Optimization Algorithm (WOA)
-- Grey Wolf Optimizer (GWO)
-- Particle Swarm Optimization (PSO)
-- Bayesian Optimization
-
-The optimization algorithms are evaluated using multiple independent runs in order to assess both their performance and stability.
-
----
-
-# 4. Evaluation Metrics
-
-The computational experiments consider multiple performance and computational-efficiency indicators.
-
-## 4.1 Prediction Performance
-
-The predictive performance assessment includes:
-
-- Root Mean Square Error (RMSE)
-- Mean Absolute Error (MAE)
-- Coefficient of Determination (R²)
-
-## 4.2 Computational Efficiency
-
-The computational assessment includes:
-
-- Training/optimization time
-- RAM/memory usage
-- Storage requirements
-- Computational cost
-
-## 4.3 Optimization Robustness
-
-The robustness of the optimization algorithms is evaluated using:
-
-- Independent optimization runs
-- Run-to-run variability
-- Statistical distributions
-- Stability analysis
-
-## 4.4 Multi-Objective Analysis
-
-The framework uses Pareto analysis to identify nondominated solutions considering multiple objectives simultaneously.
-
-The Pareto analysis can consider objectives such as:
-
-- RMSE
-- Computational time
-- Memory usage
-
----
-
-# 5. Repository Structure
-
-The repository is organized as follows:
-
-```text
-Green_AI_Driven_Pareto_Optimal_Framework/
-│
-├── Optimization.py
-├── kaynak_optimizasyon.py
-├── Pareto Optimal.py
-├── JSON Grafik.py
-├── Json Excel.py
-│
-├── green_ai_multiple_runs/
-│   │
-│   ├── all_runs_summary.json
-│   ├── experiment_results.json
-│   ├── RAM_Usage_Report.xlsx
-│   ├── stability_analysis.json
-│   ├── stability_analysis_boxplot.png
-│   │
-│   ├── run_01/
-│   ├── run_02/
-│   ├── run_03/
-│   ├── ...
-│   ├── run_20/
-│   │
-│   ├── Runs json/
-│   └── stability_visualizations/
-│
-├── requirements.txt
+```
 ├── README.md
-└── LICENSE
+├── LICENSE
+├── requirements.txt
+├── code/
+│   └── green_ai_v2.py              # single script: preflight → smoke test → full run → analysis
+├── data/
+│   ├── nasa/                       # B0005/B0006/B0018 *_discharge_soh_standardized.csv
+│   └── lifepo4/                    # duzenlenmis_2018-04-12_batch8_CH17.csv
+└── results/
+    ├── run_log.txt                 # full console log of the run
+    ├── environment.json            # Python/library versions, CPU, RAM
+    ├── experiment_config.json      # seeds, budget, population sizes, search spaces
+    ├── dataset_report.json         # per-cell checks (units, dropped cycles, SOH range)
+    ├── units_manifest.json         # protocol/unit definitions and split sizes
+    ├── prepared_features.csv       # model-ready feature table for all cells
+    ├── raw/                        # one JSON per run: raw/<protocol>/<unit>/<model>/<strategy>_seedXXX.json
+    └── analysis/
+        ├── all_runs_long.csv
+        ├── summary_by_config.csv
+        ├── friedman.csv
+        ├── nemenyi.csv
+        ├── wilcoxon_holm.csv
+        ├── pareto.csv
+        ├── greenai_scores.csv
+        ├── greenai_strategy_level.csv
+        ├── diagnostics_extrapolation_overfitting.csv
+        ├── best_hyperparameters_long.csv
+        ├── convergence_median.csv
+        ├── sanity_checks.csv       # automatic consistency checks (all passed)
+        ├── analysis_meta.json
+        ├── paper_tables.md         # tables in Markdown, generated from the CSVs
+        └── figures/                # diagnostic figures generated by the script
+```
+
+> The earlier version of this repository (code and results of a previous, unpublished manuscript) is preserved under the release tag **`v1-archive`**. It is not used in the current paper.
+
+---
+
+## Where each result in the paper comes from
+
+| Paper item | Source file(s) in `results/` |
+|---|---|
+| Table 1 – cells and split sizes | `dataset_report.json`, `units_manifest.json` |
+| Table 2 – search spaces | `experiment_config.json` (also defined in `code/green_ai_v2.py`) |
+| Figure 2 – RMSE change of each HPO strategy vs. defaults | `analysis/summary_by_config.csv`, `analysis/wilcoxon_holm.csv` |
+| Figure 3 – budget adequacy and validation–test divergence | `analysis/convergence_median.csv`, `analysis/all_runs_long.csv` |
+| Table 3 – strategy-level cost and accuracy | `analysis/summary_by_config.csv` |
+| Figure 4, Table 4 – Pareto fronts and Green AI score | `analysis/pareto.csv`, `analysis/greenai_scores.csv`, `analysis/greenai_strategy_level.csv` |
+| Figure 5 – extrapolation diagnostics | `analysis/diagnostics_extrapolation_overfitting.csv` |
+| Statistical tests (Friedman, Nemenyi, Holm–Wilcoxon) | `analysis/friedman.csv`, `analysis/nemenyi.csv`, `analysis/wilcoxon_holm.csv` |
+| Selected hyperparameters (e.g. LightGBM `min_child_samples`) | `analysis/best_hyperparameters_long.csv` |
+| Table A1 – defaults vs. best HPO strategy | `analysis/summary_by_config.csv`, `analysis/wilcoxon_holm.csv` |
+
+---
+
+## Installation
+
+```bash
+python -m venv .venv
+# Windows: .venv\Scripts\activate    Linux/macOS: source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+---
+
+## Data
+
+The script expects one CSV per cell with cycle-level time series. Column names are matched case-insensitively with common aliases:
+
+| Required | Accepted names (examples) |
+|---|---|
+| cycle | `cycle`, `cycle_number`, `cycle_index` |
+| voltage | `terminal_voltage`, `voltage`, `voltage_measured` |
+| current | `terminal_current`, `current`, `current_measured` |
+| temperature | `temperature`, `temperature_measured`, `temp` |
+| SOH | `SOH`, `state_of_health` (fraction or %; converted automatically) |
+
+SOH is defined as discharge capacity divided by nominal capacity. Features (23 per cycle) are computed by the script: current-cycle statistics, rolling statistics over the three **previous** cycles, and drift from the first cycle of the same cell (no future information is used).
+
+**Original sources**
+- NASA Prognostics Center of Excellence (PCoE), *Li-ion Battery Aging Datasets* (cells B0005, B0006, B0018).
+- LiFePO4/graphite cell: Severson et al., "Data-driven prediction of battery cycle life before capacity degradation", *Nature Energy* 4, 383–391, 2019 (batch 2018-04-12, channel 17).
+
+Please cite the original data sources when reusing the data.
+
+---
+
+## Running the experiment
+
+The data paths are set at the top of `code/green_ai_v2.py` (`NASA_DIR`, `LFP_PATH`). Either edit them, or pass a JSON file with the dataset definitions:
+
+```json
+{
+  "B0005":    {"path": "data/nasa/B0005_discharge_soh_standardized.csv", "group": "NASA", "chemistry": "Li-ion 18650 (NASA PCoE)", "required": true},
+  "B0006":    {"path": "data/nasa/B0006_discharge_soh_standardized.csv", "group": "NASA", "chemistry": "Li-ion 18650 (NASA PCoE)", "required": true},
+  "B0018":    {"path": "data/nasa/B0018_discharge_soh_standardized.csv", "group": "NASA", "chemistry": "Li-ion 18650 (NASA PCoE)", "required": true},
+  "LFP_CH17": {"path": "data/lifepo4/duzenlenmis_2018-04-12_batch8_CH17.csv", "group": "LFP", "chemistry": "LiFePO4/graphite 18650", "required": true}
+}
+```
+
+```bash
+# full pipeline: preflight + smoke test + full run + analysis
+python code/green_ai_v2.py --datasets-json datasets.json --output my_run
+
+# options
+python code/green_ai_v2.py --workers 4 --hours 9      # parallel workers, time limit for starting new seeds
+python code/green_ai_v2.py --skip-smoke               # skip the smoke test (e.g. when resuming)
+python code/green_ai_v2.py --smoke-only               # only preflight + smoke test
+python code/green_ai_v2.py --aggregate-only --output results   # recompute all analysis from the saved raw runs
+```
+
+**What happens**
+1. **Preflight** – loads every dataset, checks columns and units, builds features; stops within seconds on any problem.
+2. **Smoke test** – runs the whole pipeline with 2 seeds and 14 evaluations in `<output>/_smoke`, and prints a runtime estimate.
+3. **Full run** – all protocols × cells × models × strategies × seeds, in parallel. Each finished run is saved immediately, so **re-running the same command resumes** without recomputing finished runs.
+4. **Analysis** – all tables and figures are produced only from the saved raw results, followed by automatic sanity checks.
+
+**Reproducing the statistics without re-running the experiment**
+
+```bash
+python code/green_ai_v2.py --aggregate-only --output results
+```
+
+This rebuilds everything in `results/analysis/` from `results/raw/`.
+
+---
+
+## Notes on reproducibility
+
+- Numerical libraries are forced to one thread per process (`OMP_NUM_THREADS=1`, etc.); parallelism is at run level. CPU-time measurements therefore reflect the cost of one run.
+- The reported cost is **process CPU time** of the HPO search, not wall-clock time.
+- Reference hardware: Intel Core i5-12450HX (12 logical cores), 15.7 GB RAM, no GPU, Windows 11, 6 parallel workers. Total HPO cost of the full design: about 40 CPU-hours.
+- Accuracy results are seed-controlled and should reproduce closely on other machines; CPU times will differ with hardware, but their relative ordering across strategies should be stable.
+
+---
+
+## License
+
+Code is released under the MIT License (see `LICENSE`). Data files remain subject to the terms of their original providers.

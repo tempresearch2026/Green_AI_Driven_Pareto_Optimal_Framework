@@ -1,0 +1,121 @@
+[
+ {
+  "protocol": "CHRONO",
+  "unit": "B0005",
+  "group": "NASA",
+  "n_train": 143,
+  "n_test": 25,
+  "folds": [
+   [
+    92,
+    26
+   ],
+   [
+    118,
+    25
+   ]
+  ]
+ },
+ {
+  "protocol": "CHRONO",
+  "unit": "B0006",
+  "group": "NASA",
+  "n_train": 143,
+  "n_test": 25,
+  "folds": [
+   [
+    92,
+    26
+   ],
+   [
+    118,
+    25
+   ]
+  ]
+ },
+ {
+  "protocol": "CHRONO",
+  "unit": "B0018",
+  "group": "NASA",
+  "n_train": 112,
+  "n_test": 20,
+  "folds": [
+   [
+    73,
+    19
+   ],
+   [
+    92,
+    20
+   ]
+  ]
+ },
+ {
+  "protocol": "CHRONO",
+  "unit": "LFP_CH17",
+  "group": "LFP",
+  "n_train": 1560,
+  "n_test": 275,
+  "folds": [
+   [
+    1009,
+    275
+   ],
+   [
+    1284,
+    276
+   ]
+  ]
+ },
+ {
+  "protocol": "LOBO",
+  "unit": "test_B0005",
+  "group": "NASA",
+  "n_train": 300,
+  "n_test": 168,
+  "folds": [
+   [
+    132,
+    168
+   ],
+   [
+    168,
+    132
+   ]
+  ]
+ },
+ {
+  "protocol": "LOBO",
+  "unit": "test_B0006",
+  "group": "NASA",
+  "n_train": 300,
+  "n_test": 168,
+  "folds": [
+   [
+    132,
+    168
+   ],
+   [
+    168,
+    132
+   ]
+  ]
+ },
+ {
+  "protocol": "LOBO",
+  "unit": "test_B0018",
+  "group": "NASA",
+  "n_train": 336,
+  "n_test": 132,
+  "folds": [
+   [
+    168,
+    168
+   ],
+   [
+    168,
+    168
+   ]
+  ]
+ }
+]
